@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static',filename='main.css')}}">
+    <title>Image Schedule</title>
+</head>
+<body>
+    <div class="container">
+        <h2 style='text-align: center;'>Upload photo</h2>
+        <br><br>
+        <div class="row">
+            <form method="post" action="/uploadImage/" enctype="multipart/form-data" class="form-inline">
+                <div class="form-group">
+                    <label>Choose Images: </label>
+                    <input type="file" name="files[]" id="fileInput" class="form-control" multiple=True required>
+                </div>
+                <br>
+                <div class="form-schedule">
+                    <label>Schedule date/time: </label>
+                    <input class="inputa" type="datetime-local" name="schedule_dt" id="Scheduledt">
+                </div>
+                <br>
+                <input class="inputa" type="submit" name="submit" value="Submit" id="submit"/>
+            </form>
+            <button onclick="location.href='/customer_list/';" style="position: absolute; left: 90%; top: 100px; width: 100px; height: 40px;"class="inputa">customer list</button>
+        </div>
+    </div>
+    <br><br><br>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>created date</th>
+            <th>Schedule date</th>
+            <th>Image</th>
+            <th>Manage</th>
+        </tr>
+        {% for i in tasks %}
+            <tr>
+                <td>{{i.id}}</td>
+                <td>{{i.created_date}}</td>
+                <td>{{i.schedule_date}}</td>
+                <td>{{i.name}}</td>
+                <td><a href="/delete/{{i.id}}">Delete</a></td>
+            </tr>
+        {% endfor %}
+    </table>
+    <form action="/static/screen_state" name="screenshot" enctype="multipart/form-data"></form>
+</body>
+</html>

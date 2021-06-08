@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static',filename='style2.css')}}">
+    <title>Customer List</title>
+</head>
+<body>
+    <div class="content">
+        <h1>Customer List</h1>
+        {%  if tasks|length < 1 %}
+        <h4 style="text-align: center;">There are no customer. Create one below</h4>
+        {% else %}
+            <table>
+                <tr>
+                    <th>Customer Name</th>
+                    <th>Added</th>
+                    <th>Actions</th>
+                </tr>
+                    {% for task in tasks %}
+                    <tr>
+                        <td>{{ task.content }}</td>
+                        <td>{{ task.date_created.date() }}</td>
+                        <td>
+                            <a class="delete" href="/delete_cus/{{task.id}}">Delete</a>
+                            <br>
+                            <a class="update"href="/update_cus/{{task.id}}">Update</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+            </table>
+        {% endif %}
+        <form action="/customer_list/" method="POST">
+            <br>
+            <input type="text" class="textbox" name="content" id="content" placeholder="customer name">
+            <input type="submit" class='inputa' value="Add Customer" >
+        </form>
+    
+    </div>
+</body>
+</html>

@@ -1,0 +1,80 @@
+body, html{
+    margin: 5px;
+    font-family: sans-serif;
+    font-weight: normal;
+    letter-spacing: 4px;
+    color: #555;
+    background-color: #e3edf7;
+}
+
+table,td,th{
+    border: 1px solid #aaa;
+}
+
+table{
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th{
+    height: 30px;
+}
+
+td{
+    text-align: center;
+    padding: 5px;
+}
+
+.form{
+    margin-top: 20px;
+}
+
+#content{
+    width: 70%;
+}
+
+.textbox{
+    width: 25%;
+    align-items: center;
+}
+
+.inputa{
+    padding: 5px 10px;
+    cursor: pointer;
+    background: #e3edf7 ;
+    height: 30px;
+    width: auto;
+    border-radius: 20px;
+    margin: 0 15px;
+    text-decoration: none;
+    box-shadow: 6px 6px 10px -1px rgba(0,0,0,0.15),
+                -6px -6px 10px -1px rgba(255,255,255,0.5);
+    border: 1px solid rgba(0,0,0,0.01);    
+}
+
+
+
+.inputa:hover{
+    cursor: pointer;
+    box-shadow: inset 4px 4px 6px -1px rgba(0, 0, 0, 0.15),
+                inset -4px -4px 6px -1px rgba(255,255,255,0.7),
+                -0.5px -0.5px 0px rgba(255,255,255,1),
+                0.5px 0.5px 0px  rgba(0, 0, 0, 0.15),
+                0px 12px 10px -10px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.01);
+    
+}
+
+a{
+    color: #ff6961;
+    text-decoration: none;
+}
+
+a:hover{
+    text-decoration: underline;
+}
+
+#submit{
+    width: 100px;
+    height: 40px;
+}

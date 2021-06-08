@@ -1,0 +1,7 @@
+*.db
+env
+resource
+screen_state
+__pycache__
+.ipynb_checkpoints
+upload
