@@ -127,6 +127,14 @@ def checkImg():
     }
     return val
 
+@app.route('/get_cus_list/',methods=['GET'])
+def get_cus():
+    res = db.session.query(Todo).all()
+    cus_list = [r.content for r in res]
+    cus_dict = {
+        "customer":cus_list
+    }
+    return cus_dict
 
 
 @app.route('/static/screen_state',methods=['POST'])
