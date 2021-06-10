@@ -7,6 +7,7 @@ import os
 from os import write
 import cv2 
 import numpy as np
+import psycopg2
 
 global state
 
@@ -14,8 +15,7 @@ UPLOAD_FOLDER = '/home/sorawitchok/Line_bot_project/static/upload'
 SCREEN_SHOT = '/home/sorawitchok/Line_bot_project/static/screen_state'
 
 app = Flask(__name__)
-app.config["SQLALCHEMY_DATABASE_URI"]  = "sqlite:///database.db"
-app.config["SQLALCHEMY_BINDS"] = {"customer":"sqlite:///cus_database.db"}
+app.config["SQLALCHEMY_DATABASE_URI"]  = "postgresql://postgres:banana@localhost/database"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['SCREEN_SHOT'] = SCREEN_SHOT
@@ -32,7 +32,6 @@ class image_schedule(db.Model):
         return '<Task %r>'%self.id
 
 class Todo(db.Model):
-    __bind_key__ = "customer"
     id = db.Column(db.Integer,primary_key=True)
     content = db.Column(db.String(200),nullable=False)
     date_created = db.Column(db.DateTime,default=datetime.now)
