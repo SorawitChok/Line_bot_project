@@ -15,7 +15,7 @@ UPLOAD_FOLDER = '/home/sorawitchok/Line_bot_project/static/upload'
 SCREEN_SHOT = '/home/sorawitchok/Line_bot_project/static/screen_state'
 
 app = Flask(__name__)
-app.config["SQLALCHEMY_DATABASE_URI"]  = "postgresql://postgres:banana@localhost/database"
+app.config["SQLALCHEMY_DATABASE_URI"]  = "postgresql+psycopg2://postgres:banana@172.17.0.2:5432/database"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['SCREEN_SHOT'] = SCREEN_SHOT
@@ -211,4 +211,5 @@ def getState():
  
 
 if __name__ == "__main__":
+    db.create_all()
     app.run(debug=True, host="0.0.0.0")
