@@ -11,8 +11,8 @@ import psycopg2
 
 global state
 
-UPLOAD_FOLDER = '/home/sorawitchok/Line_bot_project/static/upload'
-SCREEN_SHOT = '/home/sorawitchok/Line_bot_project/static/screen_state'
+UPLOAD_FOLDER = '/Line_bot_project/static/upload'
+SCREEN_SHOT = '/Line_bot_project/static/screen_state'
 
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"]  = "postgresql+psycopg2://postgres:banana@172.17.0.2:5432/database"
@@ -67,23 +67,23 @@ def update_cus(id):
 @app.route('/uploadImage/',methods=['POST','GET'])
 def index():
     if request.method == 'POST':
-        try:
+        #try:
             uploaded_image = request.files.getlist('files[]')
             scheduledate = request.form['schedule_dt']
             python_dt = datetime(*[int(v) for v in scheduledate.replace('T', '-').replace(':', '-').split('-')])
             for f in uploaded_image:
                 new_uuid = str(uuid.uuid4())
                 new_content = image_schedule(schedule_date=python_dt,name=f.filename,uuid=new_uuid)
-                try:
-                    db.session.add(new_content)
-                    db.session.commit()
-                    file_name = new_uuid
-                    f.save(os.path.join(app.config['UPLOAD_FOLDER'],file_name+".png"))
-                except:
-                    return 'There was an issue submiting the request'
+                #try:
+                db.session.add(new_content)
+                db.session.commit()
+                file_name = new_uuid
+                f.save(os.path.join(app.config['UPLOAD_FOLDER'],file_name+".png"))
+                #except:
+                    #return 'There was an issue submiting the request'
             return redirect('/uploadImage/')
-        except:
-            return 'Please enter the time and upload the picutre'
+        #except:
+            r#eturn 'Please enter the time and upload the picutre'
     else:
         tasks = image_schedule.query.order_by(image_schedule.id).all()
         return render_template('index.html',tasks = tasks)

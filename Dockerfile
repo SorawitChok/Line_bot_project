@@ -2,6 +2,10 @@ FROM python:3.8.5-slim
 
 ENV OPENCV_VERSION="4.5.2.54"
 
+RUN mkdir -p /mnt/static/upload
+
+VOLUME [ "/Line_bot_project/static/upload", "/mnt/static/upload" ]
+
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
         ca-certificates \
